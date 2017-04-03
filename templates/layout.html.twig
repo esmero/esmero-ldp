@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title '' %} Esmero LDP</title>
+
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css" />
+    <!-- Visualization Scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip.min.js"></script>
+    <script src="{{ asset('js/jsonld-vis.js') }}"></script>
+    <script type="text/javascript">
+
+        var input2 = {{ jsonld|raw  }};
+        console.log(input2);
+        $(document).ready(function()  {
+            return new Promise(function() {
+                $('#visualized').empty();
+                d3.jsonldVis(input2, '#visualized');
+            });
+        });
+    </script>
+</head>
+<body>
+{% block content %}{% endblock %}
+{{ jsonld }};
+<div id="visualized"></div>
+</body>
+</html>
